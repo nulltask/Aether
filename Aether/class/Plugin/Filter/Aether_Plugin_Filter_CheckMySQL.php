@@ -18,10 +18,10 @@ class Aether_Plugin_Filter_CheckMySQL extends Ethna_Plugin_Filter
     	
     	if (DB::isError($db))
     	{
-    		// データベースが落ちている時の処理
-			$this->logger->log(LOG_INFO, 'WARNING: DB connection failed.');
-    		// return 'maintenance';
-    		// return Ethna::raiseError('DB connection failed.');
+		// データベースが落ちている時の処理
+		$this->logger->log(LOG_INFO, 'WARNING: DB connection failed.');
+		// return 'maintenance';
+		// return Ethna::raiseError('DB connection failed.');
     	}
     }
 }

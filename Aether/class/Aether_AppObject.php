@@ -15,8 +15,8 @@ class Aether_AppObject extends Ethna_AppObject
 
 	/** @var array insert, update 日時自動挿入用定義 */
 	var $column_name = array(
-       'add'	=> array('created', 'created_at', 'registered_date', 'registered', 'entry_date',),    // レコード登録日時
-       'update'	=> array('updated', 'updated_at', 'modified_date',  'modified', 'update_date',),        // レコード更新日時
+		'add'	=> array('created', 'created_at', 'registered_date', 'registered', 'entry_date',),    // レコード登録日時
+		'update'	=> array('updated', 'updated_at', 'modified_date',  'modified', 'update_date',),        // レコード更新日時
 	);
 
 	/**
@@ -117,7 +117,7 @@ class Aether_AppObject extends Ethna_AppObject
 	 * @param string $prop_name
 	 * @return Ethna_AppObject
 	 */
-	public function getRelatedObject($model_name, $prop_name = null)
+	function getRelatedObject($model_name, $prop_name = null)
 	{
 		if (!array_key_exists($model_name, $this->relation))
 		{

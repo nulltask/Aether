@@ -34,7 +34,7 @@ class Aether_AppManager extends Ethna_AppManager
 	 * @param array $array
 	 * @param bool $add
 	 */
-	public function createObject($array = array(), $add = true)
+	function createObject($array = array(), $add = true)
 	{
 		if (is_null($this->name))
 		{
@@ -65,7 +65,7 @@ class Aether_AppManager extends Ethna_AppManager
 	 * @param array $array
 	 * @param bool $add
 	 */
-	public function create($array = array(), $add = false)
+	function create($array = array(), $add = false)
 	{
 		return $this->createObject($array, $add);
 	}
@@ -77,7 +77,7 @@ class Aether_AppManager extends Ethna_AppManager
 	 * @access public
 	 * @return void
 	 */
-	public function begin()
+	function begin()
 	{
 		$this->backend->log(LOG_INFO, '<<<<<<<<<< begin transaction >>>>>>>>>>');
 		$this->db->db->autoCommit(false);
@@ -91,7 +91,7 @@ class Aether_AppManager extends Ethna_AppManager
 	 * @access public
 	 * @return void
 	 */
-	public function commit()
+	function commit()
 	{
 		$this->db->commit();
 		$this->db->db->autoCommit(true);
@@ -108,7 +108,7 @@ class Aether_AppManager extends Ethna_AppManager
 	 * @param array $args
 	 * @return array
 	 */
-	public function map($object_list, $method_name, $args = array())
+	function map($object_list, $method_name, $args = array())
 	{
 		foreach ($object_list as $object)
 		{
@@ -132,7 +132,7 @@ class Aether_AppManager extends Ethna_AppManager
 	 * @param string $get_name_object_method
 	 * @return array
 	 */
-	public function getNameObjectList($object_list, $get_name_object_method = 'getNameObject')
+	function getNameObjectList($object_list, $get_name_object_method = 'getNameObject')
 	{
 		return $this->map($object_list, $get_name_object_method);
 	}
@@ -145,7 +145,7 @@ class Aether_AppManager extends Ethna_AppManager
 	 * @param array $object_list
 	 * @return array
 	 */
-	public function remove($object_list)
+	function remove($object_list)
 	{
 		return $this->map($object_list, 'remove');
 	}

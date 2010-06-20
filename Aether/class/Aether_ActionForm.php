@@ -17,7 +17,7 @@ class Aether_ActionForm extends Ethna_ActionForm
 	 * @access public
 	 * @return void
 	 */
-	public function fillDefault()
+	function fillDefault()
 	{
 		foreach ($this->form as $name => $def)
 		{
@@ -40,11 +40,9 @@ class Aether_ActionForm extends Ethna_ActionForm
 	 * @param Ethna_AppObject $obj
 	 * @return void
 	 */
-	public function setAppObject($prop, Ethna_AppObject $obj)
+	function setAppObject($prop, Ethna_AppObject $obj)
 	{
 		$this->setApp($prop, $obj->getNameObject());
 		$this->setAppNE($prop, $obj->prop);
 	}
-
-
 }
