@@ -143,4 +143,46 @@ class Aether_AppObject extends Ethna_AppObject
 
 		return $this->backend->getObject($model_name, $reference, $this->get($prop_name));
 	}
+	
+	/**
+	 * @link http://www.bpsinc.jp/blog/archives/223
+	 */
+    function _getSQL_Update()
+    {
+        $tables = implode(',',
+            $this->my_db_rw->quoteIdentifier(array_keys($this->table_def)));
+
+        // SET句構築
+        $set_list = "";
+        $prop_arg_list = $this->prop;
+        Ethna_AppSQL::escapeSQL($prop_arg_list, $this->my_db_type);
+        foreach ($this->prop_def as $k => $v) {
+        	if (isset($prop_arg_list[$k]) && $prop_arg_list[$k] !== null && $prop_arg_list[$k] !== '') {
+	            if ($set_list != "") {
+	                $set_list .= ",";
+	            }
+	            $set_list .= sprintf("%s=%s",
+	                                 $this->my_db_rw->quoteIdentifier($k),
+	                                 $prop_arg_list[$k]);
+        	}
+        }
+
+        // 検索条件(primary key)
+        $condition = null;
+        foreach (to_array($this->id_def) as $k) {
+            if (is_null($condition)) {
+                $condition = "WHERE ";
+            } else {
+                $condition .= " AND ";
+            }
+            $v = $this->prop_backup[$k];    // equals to $this->id
+            Ethna_AppSQL::escapeSQL($v, $this->my_db_type);
+            $condition .= Ethna_AppSQL::getCondition(
+                $this->my_db_rw->quoteIdentifier($k), $v);
+        }
+
+        $sql = "UPDATE $tables SET $set_list $condition";
+
+        return $sql;
+    }
 }

@@ -63,4 +63,26 @@ class Aether_Controller extends Ethna_Controller
 			return $http_vars['action'];
 		}
 	}
+	
+	/*
+	function _createFilterChain()
+	{
+		$this->filter_chain = array();
+		foreach ($this->filter as $filter => $gateway)
+		{
+			if (isset($gateway[$this->getGateway()]))
+			{
+				$this->_isAcceptableActionName();
+			}
+			
+			$filter_plugin =& $this->plugin->getPlugin('Filter', $filter);
+			if (Ethna::isError($filter_plugin))
+			{
+				continue;
+			}
+			
+			$this->filter_chain[] =& $filter_plugin;
+		}
+	}
+	*/
 }

@@ -10,8 +10,8 @@
 
 class Aether_Plugin_Filter_MemoryUsageLogger extends Ethna_Plugin_Filter
 {
-	var $action_name = '-';
-	var $forward_name = '-';
+	var $action_name;
+	var $forward_name;
 	
     function preFilter()
     {
@@ -32,7 +32,7 @@ class Aether_Plugin_Filter_MemoryUsageLogger extends Ethna_Plugin_Filter
     function postActionFilter($action_name, $forward_name)
     {
     	$this->action_name = $action_name;
-    	$this->forward_name = $forward_name;
+    	$this->forward_name = strlen($forward_name > 0) ? $forward_name : '-';
     	
     	$this->logger->log(LOG_DEBUG, 'Memory usage (postActonFilter) : '
     		. $this->_convertByteToKiloByte(memory_get_usage()));
@@ -43,13 +43,13 @@ class Aether_Plugin_Filter_MemoryUsageLogger extends Ethna_Plugin_Filter
     function postFilter()
     {
     	$this->logger->log(LOG_INFO,
-    		sprintf('{%s, %s}', $this->action_name, $this->forward_name)
+    		sprintf('[%s] -> [%s]', $this->action_name, $this->forward_name)
     		.  ' Memory usage (postFilter) : '
     		. $this->_convertByteToKiloByte(memory_get_usage()));
     	
     	if (function_exists('memory_get_peak_usage'))
     	{
-    		// only PHP 5.3.x
+    		// only for PHP 5.3.x
     		$this->logger->log(LOG_INFO, 'Memory usage (peak) : '
     			. $this->_convertByteToKiloByte(memory_get_peak_usage()));
     	}

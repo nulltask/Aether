@@ -45,4 +45,46 @@ class Aether_ActionForm extends Ethna_ActionForm
 		$this->setApp($prop, $obj->getNameObject());
 		$this->setAppNE($prop, $obj->prop);
 	}
+	
+	/**
+	 * Enter description here ...
+	 * @author Seiya Konno <seiya@uniba.jp>
+	 * @access public
+	 * @param array $array
+	 */
+	function setArray($array)
+	{
+		foreach ($array as $key => $value)
+		{
+			$this->set($key, $value);
+		}
+	}
+	
+	/**
+	 * Enter description here ...
+	 * @author Seiya Konno <seiya@uniba.jp>
+	 * @access public
+	 * @param array $array
+	 */
+	function setAppArray($array)
+	{
+		foreach ($array as $key => $value)
+		{
+			$this->setApp($key, $value);
+		}
+	}
+	
+	/**
+	 * Enter description here ...
+	 * @author Seiya Konno <seiya@uniba.jp>
+	 * @access public
+	 * @param array $array
+	 */
+	function setAppNEArray($array)
+	{
+		foreach ($array as $key => $value)
+		{
+			$this->setAppNE($key, $value);
+		}
+	}
 }
